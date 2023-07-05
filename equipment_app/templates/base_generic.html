@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Equipment Management</title>
+</head>
+<body>
+    <h1>Equipment Management</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'teachers' %}">Teachers</a></li>
+            <li><a href="{% url 'rooms' %}">Rooms</a></li>
+            <li><a href="{% url 'equipment' %}">Equipment</a></li>
+            <li><a href="{% url 'transfers' %}">Transfers</a></li>
+        </ul>
+    </nav>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

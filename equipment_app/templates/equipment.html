@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h2>Equipment</h2>
+    <ul>
+        {% for equipment in equipments %}
+            <li>{{ equipment.number }}</li>
+        {% empty %}
+            <li>No equipments yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
