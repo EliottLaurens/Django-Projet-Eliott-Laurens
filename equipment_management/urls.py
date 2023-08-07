@@ -25,5 +25,12 @@ urlpatterns = [
     path('rooms/', views.rooms, name='rooms'),
     path('equipment/', views.equipment, name='equipment'),
     path('transfers/', views.transfers, name='transfers'),
+    path('add_teacher/', views.add_teacher, name='add_teacher'),
+    path('add_equipment/', views.add_equipment, name='add_equipment'),
+    path('transfer_equipment/<int:equipment_id>/', views.transfer_equipment, name='transfer_equipment'),
+    path('add_room/', views.add_room, name='add_room'),
+    path('equipment_in_room/<str:room_id>/', views.equipment_in_room, name='equipment_in_room'),
+    path('equipment_transfers/<int:equipment_id>/', views.equipment_transfers, name='equipment_transfers'),
+    path('teacher_responsibility/<int:teacher_id>/', views.teacher_responsibility, name='teacher_responsibility'),
 ]
 

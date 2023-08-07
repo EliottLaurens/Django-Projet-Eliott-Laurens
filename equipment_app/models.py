@@ -3,21 +3,42 @@ from django.db import models
 class Teacher(models.Model):
     name = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.name
+
 class Room(models.Model):
-    number = models.CharField(max_length=10)
+    room_number = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.number
 
 class Equipment(models.Model):
-    name = models.CharField(max_length=200)
-    accessories = models.CharField(max_length=200)
-    buyer = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name="equipment_bought")
-    owner = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name="equipment_owned")
-    current_holder = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name="equipment_held")
-    current_room = models.ForeignKey(Room, on_delete=models.SET_NULL, null=True)
+    EQUIPMENT_TYPE_CHOICES = [
+        ('smartphone', 'Smartphone'),
+        ('tablet', 'Tablette'),
+        ('screen', 'Écran'),
+        ('projector', 'Vidéo-Projecteur'),
+        ('laser_pointer', 'Pointeur Laser'),
+    ]
+    type = models.CharField(max_length=50, choices=EQUIPMENT_TYPE_CHOICES)
+    accessories = models.TextField()
+    owner = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    current_location = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='location', default=1)
+    current_possessor = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='possessor')
+
+    def __str__(self):
+        return self.type
+
 
 class Transfer(models.Model):
     equipment = models.ForeignKey(Equipment, on_delete=models.CASCADE)
-    old_holder = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name="transfers_out")
-    new_holder = models.ForeignKey(Teacher, on_delete=models.SET_NULL, null=True, related_name="transfers_in")
-    date = models.DateTimeField(auto_now_add=True)
-    location = models.ForeignKey(Room, on_delete=models.SET_NULL, null=True)
-    purpose = models.CharField(max_length=200)
+    from_possessor = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='from_possessor')
+    to_possessor = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='to_possessor')
+    date = models.DateTimeField()
+    location = models.ForeignKey(Room, on_delete=models.CASCADE)
+    occasion = models.CharField(max_length=100)
+    accessories_state = models.TextField()
+
+    def __str__(self):
+        return f'{self.equipment} transfer from {self.from_possessor} to {self.to_possessor}'
+

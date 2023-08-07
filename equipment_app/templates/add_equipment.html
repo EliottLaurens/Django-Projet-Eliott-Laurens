@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Equipment</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="type">Type:</label>
+        <select id="type" name="type">
+            <option value="smartphone">Smartphone</option>
+            <option value="tablet">Tablet</option>
+            <option value="screen">Screen</option>
+            <option value="projector">Projector</option>
+            <option value="laser_pointer">Laser Pointer</option>
+        </select>
+        <br>
+        <label for="accessories">Accessories:</label>
+        <input type="text" id="accessories" name="accessories">
+        <br>
+        <label for="owner">Owner:</label>
+        <select id="owner" name="owner">
+            {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="location">Location:</label>
+        <select id="location" name="location">
+            {% for room in rooms %}
+                <option value="{{ room.id }}">{{ room.room_number }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="possessor">Possessor:</label>
+        <select id="possessor" name="possessor">
+            {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Add Equipment</button>
+    </form>
+</body>
+</html>

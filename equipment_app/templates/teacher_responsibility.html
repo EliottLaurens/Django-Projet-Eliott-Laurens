@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Responsibility of {{ teacher.name }}</title>
+</head>
+<body>
+    <h1>Equipment Responsible by {{ teacher.name }}</h1>
+    <ul>
+        {% for equipment in equipment_responsible %}
+            <li>{{ equipment.name }} ({{ equipment.accessories }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

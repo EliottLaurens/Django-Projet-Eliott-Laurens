@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transfers for {{ equipment.accessories }}</title>
+</head>
+<body>
+    <h1>Transfers for {{ equipment.accessories }}</h1>
+    <table>
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Occasion</th>
+        </tr>
+        {% for transfer in transfers %}
+            <tr>
+                <td>{{ transfer.from_possessor }}</td>
+                <td>{{ transfer.to_possessor }}</td>
+                <td>{{ transfer.date }}</td>
+                <td>{{ transfer.location.room_number }}</td>
+                <td>{{ transfer.occasion }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

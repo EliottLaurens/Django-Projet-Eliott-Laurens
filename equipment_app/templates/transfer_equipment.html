@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Equipment</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="to_possessor">Transfer To:</label>
+        <select id="to_possessor" name="to_possessor">
+            {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+        <br>
+        <label for="location">Location:</label>
+        <select id="location" name="location">
+            {% for room in rooms %}
+                <option value="{{ room.id }}">{{ room.room_number }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="occasion">Occasion:</label>
+        <input type="text" id="occasion" name="occasion">
+        <br>
+        <label for="accessories_state">Accessories State:</label>
+        <input type="text" id="accessories_state" name="accessories_state">
+        <br>
+        <button type="submit">Transfer Equipment</button>
+    </form>
+</body>
+</html>

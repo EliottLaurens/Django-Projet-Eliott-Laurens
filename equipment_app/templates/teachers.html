@@ -5,6 +5,7 @@
     <ul>
         {% for teacher in teachers %}
             <li>{{ teacher.name }}</li>
+            <a href="{% url 'teacher_responsibility' teacher.id %}">View Responsibility</a>
         {% empty %}
             <li>No teachers yet.</li>
         {% endfor %}

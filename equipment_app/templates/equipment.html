@@ -4,7 +4,14 @@
     <h2>Equipment</h2>
     <ul>
         {% for equipment in equipments %}
-            <li>{{ equipment.number }}</li>
+            <li>Type: {{ equipment.type }}</li>
+            <li>Accessories: {{ equipment.accessories }}</li>
+            <li>Owner: {{ equipment.owner.name }}</li>
+            <li>Location: {{ equipment.current_location.room_number }}</li>
+            <li>Possessor: {{ equipment.current_possessor.name }}</li>
+            <li><a href="{% url 'transfer_equipment' equipment.id %}">Transfer</a></li>
+            <li><a href="{% url 'equipment_transfers' equipment.id %}">View Transfers</a></li>
+            <hr>
         {% empty %}
             <li>No equipments yet.</li>
         {% endfor %}
