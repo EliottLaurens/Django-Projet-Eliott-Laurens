@@ -6,6 +6,7 @@
         {% for equipment in equipments %}
             <li>Type: {{ equipment.type }}</li>
             <li>Accessories: {{ equipment.accessories }}</li>
+            <li>Budget: {{ item.get_budget_display }}</li>
             <li>Owner: {{ equipment.owner.name }}</li>
             <li>Location: {{ equipment.current_location.room_number }}</li>
             <li>Possessor: {{ equipment.current_possessor.name }}</li>

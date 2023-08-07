@@ -20,7 +20,14 @@ class Equipment(models.Model):
         ('projector', 'Vidéo-Projecteur'),
         ('laser_pointer', 'Pointeur Laser'),
     ]
+    BUDGET_CHOICES = [
+        ('current_year', 'Current Year Budget'),
+        ('projects', 'Projects Budget'),
+        ('exceptional', 'Exceptional Financing'),
+        # add other budget options here
+    ]
     type = models.CharField(max_length=50, choices=EQUIPMENT_TYPE_CHOICES)
+    budget = models.CharField(max_length=20, choices=BUDGET_CHOICES, default='current_year')
     accessories = models.TextField()
     owner = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     current_location = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='location', default=1)

@@ -54,6 +54,7 @@ def add_equipment(request):
     rooms = Room.objects.all()
     if request.method == "POST":
         type = request.POST['type']
+        budget = request.POST['budget']
         accessories = request.POST['accessories']
         owner_id = request.POST['owner']
         location_id = request.POST['location']
@@ -61,7 +62,7 @@ def add_equipment(request):
         owner = Teacher.objects.get(id=owner_id)
         location = Room.objects.get(id=location_id)
         possessor = Teacher.objects.get(id=possessor_id)
-        Equipment.objects.create(type=type, accessories=accessories, owner=owner, current_location=location, current_possessor=possessor)
+        Equipment.objects.create(type=type, accessories=accessories, owner=owner, current_location=location, current_possessor=possessor, budget=budget)
         return redirect('equipment')
     return render(request, 'add_equipment.html', {'teachers': teachers, 'rooms': rooms})
 
