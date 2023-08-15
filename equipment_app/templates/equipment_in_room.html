@@ -8,7 +8,7 @@
     <h1>Equipment in Room {{ room.room_number }}</h1>
     <ul>
         {% for equipment in equipment_in_room %}
-            <li>{{ equipment.name }} ({{ equipment.accessories }})</li>
+            <li>{{ equipment.type }} ({{ equipment.accessories }})</li>
         {% endfor %}
     </ul>
 </body>
